@@ -1,0 +1,20 @@
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    template:
+      default-topic: purchase-spring
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.UUIDSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 0
+    consumer:
+      group-id: demo-kafka
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
